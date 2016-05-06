@@ -7,6 +7,12 @@ layout: default
     .pinned_div{
         border: 2px solid #dfdfdf;
         border-style: dashed;
+             margin-top: 40px;
+        font-size: 16px;
+        padding: 6px;
+        background-color: #f9f9f9;
+        border-radius: 3px;
+        padding: 30px;
     }
     .footer{
         margin-top: 40px;
@@ -84,7 +90,7 @@ layout: default
         {% for post in site.posts %}
           {% if post.layout == "post" %}
           {% if post.pinned == 1 %}
-            <div class="post pinned_div">
+            <div class="pinned_div">
               <span id="date"><span class="pinned">"Pinned" - </span>{{ post.date | date: "%b %-d, %Y" }}</span>
                 <h1><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h1>
                <div>{{ post.content }}</div>
