@@ -1,0 +1,16 @@
+#inherit: base-manifest.yml 
+applications:
+  - name: betul_turkicin-predixpark-service
+    buildpack: java_buildpack
+    path: target/predixpark-service-1.1.1.jar
+    memory: 256M
+    services:
+      - rmd_uaa_betul_turkicin
+      - predix-park-timeseries
+env:
+    predix_timeseries_name : predix-park-timeseries
+    predix_oauthRestHost : https://78e21a67-0718-4e4a-b99f-78ad145ffef4.predix-uaa.run.aws-usw02-pr.ice.predix.io/oauth/token
+    predix_oauthClientId : ppark_app:pp@beo
+    trustedIssuerIdsRegexPattern : ^http://(.*\\.)?.predix-uaa.run.aws-usw02-pr.ice/oauth/token$
+    predix_connectionTimeout : 5000
+    predix_socketTimeout : 5000
