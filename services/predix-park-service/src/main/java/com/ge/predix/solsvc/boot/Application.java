@@ -65,7 +65,7 @@ import org.springframework.web.context.support.StandardServletEnvironment;
 
 })
 @PropertySource("classpath:application-default.properties")
-@ComponentScan(basePackages = ("com.ge.predix.solsvc"))
+@ComponentScan(basePackages = {"com.ge.predix.solsvc","com.ge.predix.park"})
 @ImportResource(
 {
         "classpath*:META-INF/spring/predix-microservice-cf-jsr-cxf-context.xml",

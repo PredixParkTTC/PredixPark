@@ -96,7 +96,7 @@ public class ParkDataServiceIT {
 		
 		HttpHeaders headers = new HttpHeaders();
 		headers.put("Authorization", Collections.singletonList("testHeader"));
-		URL parkDataUrl = new URL("http://localhost:" + this.localServerPort + "/services/parkingservices/park/data/slotid/Slot-583:Presence");
+		URL parkDataUrl = new URL("http://localhost:" + this.localServerPort + "/services/parkingservices/park/data/slotid/ParkingSlot-1234:Presence");
 		
 		ResponseEntity<DatapointsResponse> response = this.template.exchange(parkDataUrl.toString(), HttpMethod.GET, new HttpEntity<byte[]>(headers), DatapointsResponse.class);
 			
@@ -115,9 +115,9 @@ public class ParkDataServiceIT {
 		headers.put("Authorization", Collections.singletonList("testHeader"));
 
 		
-		URL windDataURl = new URL("http://localhost:" + this.localServerPort + "/services/parkingservices/tags");
+		URL parkDataURl = new URL("http://localhost:" + this.localServerPort + "/services/parkingservices/tags");
 		
-		ResponseEntity<String> response = this.template.exchange(windDataURl.toString(), HttpMethod.GET, new HttpEntity<byte[]>(headers), String.class);
+		ResponseEntity<String> response = this.template.exchange(parkDataURl.toString(), HttpMethod.GET, new HttpEntity<byte[]>(headers), String.class);
 			
 		assertNotNull(response);
 		assertEquals(HttpStatus.OK,response.getStatusCode());

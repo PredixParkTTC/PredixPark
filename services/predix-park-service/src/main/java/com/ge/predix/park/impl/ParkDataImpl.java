@@ -3,6 +3,7 @@ package com.ge.predix.park.impl;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -92,11 +93,15 @@ public class ParkDataImpl implements ParkDataAPI {
 		List<Header> headers = generateHeaders();
 
 		DatapointsLatestQuery dpQuery = buildLatestDatapointsQueryRequest(id);
+		log.info("Base query url:" + this.timeseriesRestConfig.getBaseUrl());
+		log.info("Db query:" +dpQuery);
+		
 		DatapointsResponse response = this.timeseriesFactory
 				.queryForLatestDatapoint(
 						this.timeseriesRestConfig.getBaseUrl(), dpQuery,
 						headers);
-		log.debug(response.toString());
+		
+		log.info(response.toString());
 
 		return handleResult(response);
 	}
@@ -105,6 +110,16 @@ public class ParkDataImpl implements ParkDataAPI {
 	private List<Header> generateHeaders()
     {
         List<Header> headers = this.restClient.getSecureTokenForClientId();
+        if(headers != null && !headers.isEmpty()){
+        	for (Iterator iterator = headers.iterator(); iterator.hasNext();) {
+    			Header header = (Header) iterator.next();
+    			log.info("Header:" + header.getName());
+    			log.info("Header:" + header.getValue());
+    		}	
+        }
+        
+        log.info("Zoneid:"+this.timeseriesRestConfig.getZoneId());
+        
 		this.restClient.addZoneToHeaders(headers,
 				this.timeseriesRestConfig.getZoneId());
         return headers;
@@ -210,7 +225,7 @@ public class ParkDataImpl implements ParkDataAPI {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.ge.predix.solsvc.api.WindDataAPI#getWindDataTags()
+	 * @see com.ge.predix.solsvc.api.ParkDataAPI#getParkDataTags()
 	 */
 	@Override
 	public Response getParkDataTags() {
