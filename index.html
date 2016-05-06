@@ -1,0 +1,107 @@
+---
+layout: default
+---
+<style type="text/css">
+    body{   background-color: #ddd; 
+            font-family: "GE Inspira Pitch","GE Inspira", "Helvetica"}
+    .pinned_div{
+        border: 2px solid #dfdfdf;
+        border-style: dashed;
+    }
+    .footer{
+        margin-top: 40px;
+        color: #989898;
+        font-size: 0.6em;
+        font-style: italic;
+    }
+    #container{ background-color: #efefef;
+                width: 70%;
+                padding: 50px;
+                margin: auto; 
+                margin-top: 30px;
+            }
+            .pinned{
+                font-style: italic;
+                color: #129898;
+            }
+        #crown{
+        background-repeat: no-repeat;
+        background-size: 44px 44px;
+        width: 44px;
+        height: 44px;
+        margin: 1px;
+        position: absolute;
+        background-color: #fff;
+        border-radius: 22px;
+        background-image: url("img/logo.png");
+    }
+    #heading{
+                width: 70%;
+                padding-top: 10px;
+                margin: auto; 
+    }
+    #title{
+        position: relative;
+        left: 50px;
+        top: 10px;
+        font-size: 28px;
+        color: #3A73B8;
+    }
+    a{
+        text-decoration: bold;
+    }
+    h1>a{text-decoration:none;
+        color: #121212;}
+    .post{
+        margin-top: 40px;
+        font-size: 16px;
+        padding: 6px;
+        background-color: #f9f9f9;
+        border:1px solid #efefef;
+        border-radius: 3px;
+        padding: 30px;
+    }
+    img{
+        max-width: 300px;
+        height: auto;
+    }
+   
+</style>
+<div id="heading">
+    <div id="crown"></div><span id="title">{{ site.title }}</span>
+    <div id="buttons">
+    </div>
+</div>
+
+
+<div></div>
+<div id="container">
+    <p>{{ site.description }}</p>
+    <p>Project repository is hosted at github and available <a href="{{ site.repourl }}">here</a></p>
+
+    <h1>Posts</h1>
+
+        {% for post in site.posts %}
+          {% if post.layout == "post" %}
+          {% if post.pinned == 1 %}
+            <div class="post pinned_div">
+              <span id="date"><span class="pinned">"Pinned" - </span>{{ post.date | date: "%b %-d, %Y" }}</span>
+                <h1><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h1>
+               <div>{{ post.content }}</div>
+                </div>
+          {% endif %}
+          {% endif %}
+        {% endfor %}
+        {% for post in site.posts %}
+          {% if post.layout == "post" %}
+          {% if post.pinned == 0 %}
+          <div class="post">
+                <span id="date">{{ post.date | date: "%b %-d, %Y" }}</span>
+                <h1><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h1>
+               <div>{{ post.content }}</div>
+                </div>
+          {% endif %}
+          {% endif %}
+        {% endfor %}
+</div>
+<div class="footer">Powered by Jekyll, hosted at Github.</div>

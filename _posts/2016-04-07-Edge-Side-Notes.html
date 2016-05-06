@@ -1,0 +1,144 @@
+---
+layout: post
+Title: Edge Site Notes
+pinned: 0
+---
+<div style="margin: 0cm 0cm 0.0001pt; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; text-align: start; text-indent: 0px; text-transform:none; white-space: normal; widows: 1; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,255); ">
+    <div>Existing Parking app examples with Raspberry pi that we can get knowledge:</div>
+    <ul>
+        <li>
+            <span style="font-size: 11pt; font-family: Calibri, sans-serif; color: rgb(31, 73, 125); ">
+                <ahref="http://www.instructables.com/id/How-to-build-a-parking-sensor-to-solve-the-pain-of/" style="color: rgb(17, 85, 204); "target="_blank">http://www.instructables.com/id/How-to-build-a-parking-sensor-to-solve-the-pain-of/
+                </a>
+            </span>
+        </li>
+        <li>
+            <span style="font-size: 11pt; font-family: Calibri, sans-serif; color: rgb(31,73, 125); ">
+                <a href="http://blog.ubidots.com/how-to-build-a-parking-sensor-to-solve-the-pain-of-finding-a-free-spot" style="color: rgb(17,85, 204); " target="_blank">http://blog.ubidots.com/how-to-build-a-parking-sensor-to-solve-the-pain-of-finding-a-free-spot</a> (Buradaubidots yerine predixi kullanmamız gerekiyor.)
+            </span>
+        </li>
+        <li>
+            <spanstyle="font-size: 11pt; font-family: Calibri, sans-serif; color:rgb(31, 73, 125); ">
+                <ahref="https://www.element14.com/community/community/raspberry-pi/raspberrypi_projects/blog/2014/05/04/pi-based-parking-monitor-visitor-detector-with-pi-noir-and-piface-cad" style="color: rgb(17,85, 204); "target="_blank">https://www.element14.com/community/community/raspberry-pi/raspberrypi_projects/blog/2014/05/04/pi-based-parking-monitor-visitor-detector-with-pi-noir-and-piface-cad
+                </a>
+            </span>
+        </li>
+        <li>
+            <span style="font-size: 11pt; font-family:Calibri, sans-serif; color: rgb(31, 73, 125); ">
+                <ahref="http://jeremyblythe.blogspot.com.tr/2013/03/raspberry-pi-parking-camera-with.html" style="color: rgb(17, 85, 204); "target="_blank">http://jeremyblythe.blogspot.com.tr/2013/03/raspberry-pi-parking-camera-with.html
+                </a>
+            </span>
+        </li>
+    </ul>
+    <div>
+        <span style="font-size: 11pt; ">
+            <span style="font-family: Calibri, sans-serif; ">
+                <span style="color: rgb(31, 73,125); ">
+                    <br/>
+                </span>
+            </span>
+        </span>
+    </div>
+    <div>Bunları inceleyebiliriz,nasıl bir uygulama yapacağımız konusunda predix machine tarafındafikir verir.</div>
+    <div>İnceleme sonucunda fikirlerimi bu not altındapaylaşıyor olacağım.</div>
+</div>
+<div style="margin: 0cm 0cm 0.0001pt; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; text-align: start; text-indent: 0px; text-transform:none; white-space: normal; widows: 1; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); ">
+    <div>
+        <spanstyle="color: rgb(34, 34, 34); ">
+            <span style="font-size: 16px; ">
+                <spanstyle="font-family: &amp; apos; Times New Roman&amp; apos; ,serif; ">
+                    <br/>
+                </span>
+            </span>
+        </span>
+    </div>
+    <div>
+        <ahref="https://www.predix.io/resources/tutorials/tutorial-details.html?tutorial_id=1600&amp; amp; tag=1610&amp; amp; journey=Connect%20devices%20using%20the%20Reference%20App&amp; amp; resources=1592,1473,1600"/>Predix machine tarafında şu örnek uygulamayı yapmayıplanlıyorum.
+    </div>
+    <div>
+        <ahref="https://www.predix.io/resources/tutorials/tutorial-details.html?tutorial_id=1600&amp; amp; tag=1610&amp; amp; journey=Connect%20devices%20using%20the%20Reference%20App&amp; amp; resources=1592,1473,1600"/>
+        <ahref="https://www.predix.io/resources/tutorials/tutorial-details.html?tutorial_id=1600&amp; amp; tag=1610&amp; amp; journey=Connect%20devices%20using%20the%20Reference%20App&amp; amp; resources=1592,1473,1600">https://www.predix.io/resources/tutorials/tutorial-details.html?tutorial_id=1600&amp; tag=1610&amp; journey=Connect%20devices%20using%20the%20Reference%20App&amp; resources=1592,1473,1600
+        </a>
+    </div>
+    <div>
+        <br/>
+    </div>
+    <div>Devreyi yaptım, şimdilik predix machine ile değil ama python ileçalışıyor. Ama analog değil de digital yanıtı döndürüp ledi ona göreyakıyor. Aslında uzaklık senserü olduğu için analog olması lazım amavar bi ayarı herhalde bakıcam.</div>
+    <div>
+        <br/>
+    </div>
+</div>
+<div>
+    <img max-width: 300px; height: auto; src="{{ site.baseurl }}/img/rsz_resim.jpg" height="1224" width="918"/>
+</div>
+<div>
+    <br/>
+</div>
+<div>Aşağıdaki diagramda yanlışlıkolmuşnumaralandırmada:&nbsp; &nbsp; </div>
+<div>2=&gt; 4</div>
+<div>3=&gt; 6olması gerekiyor</div>
+<div>
+    <img max-width: 300px; height: auto; src="{{ site.baseurl }}/img/Resim.jpg" height="2160"width="3840"/>
+</div>
+<div>
+    <b>
+        <span style="font-size:21px; ">
+            <br/>
+        </span>
+    </b>
+</div>
+<div>
+    <b>
+        <span style="font-size:21px; ">
+            <img max-width: 300px; height: auto; src="{{ site.baseurl }}/img/code_phyton.jpg" height="2144" width="1800"/>
+            <br/>
+        </span>
+    </b>
+</div>
+<div>
+    <b>
+        <span style="font-size: 21px; ">
+            <br/>
+        </span>
+    </b>
+</div>
+<div>
+    <b>
+        <span style="font-size: 21px; ">
+            <br/>
+        </span>
+    </b>
+</div>
+<div>
+    <span style="font-size:21px; ">
+        <b>GPIO</b>
+    </span>
+</div>
+<div>
+    <ahref="https://www.raspberrypi.org/documentation/usage/gpio/"/>
+    <a href="https://www.raspberrypi.org/documentation/usage/gpio/">https://www.raspberrypi.org/documentation/usage/gpio/</a>
+</div>
+<div>
+    <a href="http://pinout.xyz/">http://pinout.xyz/</a>
+</div>
+<div>
+    <br/>
+</div>
+<div>Physicalnumbers vs GPIO pin numbers (also called BCM pin numbers "Broadcom pinnumber" &nbsp; &nbsp; )</div>
+<div>
+    <br/>
+</div>
+<div>
+    <img max-width: 300px; height: auto; src="{{ site.baseurl }}/img/04E62914-BD15-4CB7-B4A7-C1AE41E3CF99.png" height="621" width="412"/>
+</div>
+<div>
+    <br/>
+</div>
+<div>Phyton da seçimyapılabiliyor. BCM modunda çalıştırıldığında I/O olarak ilkdiagramdaki BCM numaraları vermek gerekiyor.</div>
+<div>Board modundaçalıştırıldığında ikinci diyagramı kullanmakgerekiyor.</div>
+<div>
+    <br/>
+</div>
+<div>
+    <br/>
+</div>

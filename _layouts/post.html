@@ -1,0 +1,60 @@
+---
+layout: default
+---
+<style type="text/css">
+    body{   background-color: #ddd; 
+            font-family: "GE Inspira Pitch","GE Inspira", "Helvetica"}
+    #container{ background-color: #efefef;
+                width: 70%;
+                padding: 50px;
+                margin: auto; 
+                margin-top: 30px;
+            }
+        #crown{
+        background-repeat: no-repeat;
+        background-size: 44px 44px;
+        width: 44px;
+        height: 44px;
+        margin: 1px;
+        position: absolute;
+        background-color: #fff;
+        border-radius: 22px;
+        background-image: url("{{ site.baseurl }}/img/logo.png");
+    }
+    img{
+        max-width: 300px;
+        height: auto;
+    }
+    #heading{
+                width: 70%;
+                padding-top: 10px;
+                margin: auto; 
+    }
+    #title{
+        position: relative;
+        left: 50px;
+        top: 10px;
+        font-size: 28px;
+        color: #3A73B8;
+    }
+    a{
+        text-decoration: bold;
+    }
+    .post{
+        font-size: 16px;
+        padding: 6px;
+
+    }
+   
+</style>
+<div id="heading">
+    <div id="crown"></div><span id="title">{{ site.title }}</span>
+    <div id="buttons">
+    </div>
+</div>
+
+
+<div></div>
+<div id="container">
+	{{ content }}
+</div>

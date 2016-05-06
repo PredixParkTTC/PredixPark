@@ -1,0 +1,4 @@
+baseurl: http://predixparkttc.github.io/PredixPark
+repourl: https://github.com/predixparkttc/PredixPark
+title: PredixPark
+description: A Predix enabled parking application based on Raspberry PI - Submission for GE Digital's Predix Hackathon
