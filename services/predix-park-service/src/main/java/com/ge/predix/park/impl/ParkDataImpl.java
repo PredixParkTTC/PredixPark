@@ -13,6 +13,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
 import javax.ws.rs.core.Response.Status;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.Header;
 import org.apache.http.client.entity.GzipDecompressingEntity;
@@ -34,6 +35,8 @@ import com.ge.predix.timeseries.entity.datapoints.ingestionrequest.Body;
 import com.ge.predix.timeseries.entity.datapoints.ingestionrequest.DatapointsIngestion;
 import com.ge.predix.timeseries.entity.datapoints.queryrequest.latest.DatapointsLatestQuery;
 import com.ge.predix.timeseries.entity.datapoints.queryresponse.DatapointsResponse;
+import com.ge.predix.timeseries.entity.datapoints.queryresponse.Results;
+import com.ge.predix.timeseries.entity.datapoints.queryresponse.Tag;
 
 /**
  * 
@@ -42,6 +45,10 @@ import com.ge.predix.timeseries.entity.datapoints.queryresponse.DatapointsRespon
 @Component
 public class ParkDataImpl implements ParkDataAPI {
 
+	public static final Integer PARKING_STATUS_UNKNOWN = -1;
+	public static final Integer PARKING_STATUS_FULL = 1;
+	public static final Integer PARKING_STATUS_EMPTY = 1;
+	
 	@Autowired
 	private IServiceManagerService serviceManagerService;
 
@@ -86,39 +93,59 @@ public class ParkDataImpl implements ParkDataAPI {
 
 
 	@Override
-	public Response getParkingSlotStatus(String id, String authorization) {
+	public Response getLatestParkingSlotTimeseriesDataPoints(String id, String authorization) {
+
+		DatapointsResponse response = getLatestDataPointsResponse(id, authorization);
+
+		log.debug(response.toString());
+
+		return handleResult(response);
+	}
+	
+	private DatapointsResponse getLatestDataPointsResponse(String id, String authorization){
 		if (id == null) {
 			return null;
 		}
 		List<Header> headers = generateHeaders();
-
 		DatapointsLatestQuery dpQuery = buildLatestDatapointsQueryRequest(id);
-		log.info("Base query url:" + this.timeseriesRestConfig.getBaseUrl());
-		log.info("Db query:" +dpQuery);
 		
 		DatapointsResponse response = this.timeseriesFactory
 				.queryForLatestDatapoint(
 						this.timeseriesRestConfig.getBaseUrl(), dpQuery,
 						headers);
-		
-		log.info(response.toString());
+		return response;
+	}
+	
 
-		return handleResult(response);
+	@Override
+	public Response getLatestParkingSlotStatus(String id, String authorization) {
+		Integer parkingStatus = -1;
+		DatapointsResponse response = getLatestDataPointsResponse(id, authorization);
+		List<Tag> tags = response.getTags();
+		if(!CollectionUtils.isEmpty(tags)) {
+			Tag tag = tags.get(0);
+			List<Results> results = tag.getResults();
+			if(!CollectionUtils.isEmpty(results)){
+				Results result = results.get(0);
+				List<Object> values = result.getValues();
+				log.info("Values:" + values);
+				if(!CollectionUtils.isEmpty(values)){
+					List valueList = (List)values.get(0);
+					if(valueList != null && valueList.size() > 1 ){
+						parkingStatus=(Integer)valueList.get(1);
+						log.info("Parking status:"+parkingStatus);
+					}
+					
+				}
+			}
+		}
+		return handleResult(parkingStatus);
 	}
 
 	@SuppressWarnings({ "unqualified-field-access", "nls" })
 	private List<Header> generateHeaders()
     {
         List<Header> headers = this.restClient.getSecureTokenForClientId();
-        if(headers != null && !headers.isEmpty()){
-        	for (Iterator iterator = headers.iterator(); iterator.hasNext();) {
-    			Header header = (Header) iterator.next();
-    			log.info("Header:" + header.getName());
-    			log.info("Header:" + header.getValue());
-    		}	
-        }
-        
-        log.info("Zoneid:"+this.timeseriesRestConfig.getZoneId());
         
 		this.restClient.addZoneToHeaders(headers,
 				this.timeseriesRestConfig.getZoneId());

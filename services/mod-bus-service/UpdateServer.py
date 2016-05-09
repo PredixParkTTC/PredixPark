@@ -19,11 +19,13 @@ while True:
     print(uzaklik)
 
     if(uzaklik == 1.0):
+	# Uncomment if connected to led
         # GPIO.output(22, True)
-        client.write_coil(0, True)
+        client.write_register(1, 1)
     if(uzaklik == 0.0):
+	# Uncomment if connected to led
         # GPIO.output(22, False)
-        client.write_coil(0, False)
+        client.write_register(1, 1)
 
    time.sleep(1.0)
 

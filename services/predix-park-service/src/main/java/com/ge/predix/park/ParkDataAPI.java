@@ -40,9 +40,14 @@ public interface ParkDataAPI
 	 */
 	@GET
 	@Path("/data/slotid/{id}")
-	public Response getParkingSlotStatus(@PathParam("id") String id,
+	public Response getLatestParkingSlotTimeseriesDataPoints(@PathParam("id") String id,
 			@HeaderParam(value = "Authorization") String authorization);
 
+	
+	@GET
+	@Path("/data/slotid/{id}/status")
+	public Response getLatestParkingSlotStatus(@PathParam("id") String id,
+			@HeaderParam(value = "Authorization") String authorization);
 	/**
 	 * 
 	 * @return List of tags

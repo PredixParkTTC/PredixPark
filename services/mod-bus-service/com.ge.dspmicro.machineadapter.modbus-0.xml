@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <modbusMachineAdapterConfig>
+            <name>Onsite monitor modbus nodes</name>
+            <description>Onsite monitor modbus nodes</description>
+            <dataNodeConfigs>
+                <channel protocol="TCP_IP" tcpIpAddress="127.0.0.1" tcpIpPort="502">
+                    <unit id="1">
+                        <register name="PredixPark:SlotFull" dataType="SHORT" address="1" registerType="HOLDING" description="Is parking slot taken?" />
+                    </unit>
+                </channel>
+            </dataNodeConfigs>
+            <dataSubscriptionConfigs>
+                <dataSubscriptionConfig name="ModBusSubscription"
+                    updateInterval="1" startPointUnit="MINUTES" startPointOffset="-1">
+                    <nodeName>PredixPark:SlotFull</nodeName>
+                </dataSubscriptionConfig>
+            </dataSubscriptionConfigs>
+        </modbusMachineAdapterConfig>
